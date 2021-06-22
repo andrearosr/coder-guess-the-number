@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import Card from './components/Card';
-import Colors from './constants/colors';
+import Card from '../components/Card';
+import Colors from '../constants/colors';
 
 const StartGameScreen = () => {
   return (
