@@ -6,9 +6,26 @@ import Colors from '../constants/colors';
 
 const StartGameScreen = () => {
   const [enteredValue, setEnteredValue] = useState('');
+  const [confirmed, setConfirmed] = useState(false);
+  const [selectedNumer, setSelectedNumber] = useState('');
 
-  const handlerInputNumber = text => {
+  const handleInputNumber = text => {
     setEnteredValue(text.replace(/[^0-9]/g, ''));
+  }
+
+  const handleResetInput = () => {
+    setEnteredValue('');
+    setConfirmed(false);
+  }
+
+  const handleConfirmInput = () => {
+    const chooseNumber = parseInt(enteredValue);
+
+    if (chooseNumber === NaN || chooseNumber <= 0 || chooseNumber > 99) return;
+
+    setConfirmed(true);
+    setSelectedNumber(chooseNumber);
+    setEnteredValue('');
   }
 
   return (
@@ -23,12 +40,12 @@ const StartGameScreen = () => {
             autoCorrect={false}
             keyboardType="numeric"
             maxLength={2}
-            onChangeText={handlerInputNumber}
+            onChangeText={handleInputNumber}
             value={enteredValue}
           />
           <View style={styles.buttonContainer}>
-            <Button title="Limpiar" onPress={() => { }} color={Colors.accent} style={styles.button} />
-            <Button title="Confirmar" onPress={() => { }} color={Colors.primary} style={styles.button} />
+            <Button title="Limpiar" onPress={handleResetInput} color={Colors.accent} style={styles.button} />
+            <Button title="Confirmar" onPress={handleConfirmInput} color={Colors.primary} style={styles.button} />
           </View>
         </Card>
       </View>
