@@ -60,8 +60,12 @@ const StartGameScreen = ({ onStartGame }) => {
             onChangeText={handleInputNumber}
           />
           <View style={styles.buttonContainer}>
-            <Button title="Limpiar" onPress={handleResetInput} color={Colors.accent} style={styles.button} />
-            <Button title="Confirmar" onPress={handleConfirmInput} color={Colors.primary} style={styles.button} />
+            <View style={styles.button}>
+              <Button title="Limpiar" onPress={handleResetInput} color={Colors.accent} style={styles.button} />
+            </View>
+            <View style={styles.button}>
+              <Button title="Confirmar" onPress={handleConfirmInput} color={Colors.primary} style={styles.button} />
+            </View>
           </View>
         </Card>
         {confirmedOutput}
@@ -81,7 +85,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   inputContainer: {
-    width: 300,
+    width: 600,
     maxWidth: '80%',
     padding: 20,
     alignItems: 'center',
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
     width: 100,
   },
   button: {
-    flex: 1,
+    width: 100,
   },
   summaryContainer: {
     marginVertical: 10,
