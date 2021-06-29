@@ -6,16 +6,8 @@ import GameScreen from './screens/GameScreen';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
-// const fetchFonts = () => {
-//   return Font.loadAsync({
-//     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
-//     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
-//   });
-// };
-
 export default function App() {
   const [userNumber, setUserNumber] = useState('');
-  // const [dataLoaded, setDataLoaded] = useState(false);
   const [dataLoaded] = useFonts({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
