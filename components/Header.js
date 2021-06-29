@@ -1,12 +1,11 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import Colors from '../constants/colors';
 
 const Header = ({ title }) => {
   return (
     <View style={styles.header}>
       <Text style={styles.headerTitle}>{title}</Text>
-      <Image source={require('../assets/images/B.jpeg')} style={styles.image} />
     </View>
   )
 }
