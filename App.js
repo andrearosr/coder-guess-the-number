@@ -15,7 +15,7 @@ export default function App() {
 
   const content = userNumber
     ? <GameScreen onEndGame={setUserNumber} userOption={userNumber} />
-    : <StartGameScreen onStartGame={setUserNumber} />
+    : <StartGameScreen onStartGame={setUserNumber} onGameOver={() => {}} />
 
   if (!dataLoaded) {
     return <AppLoading />

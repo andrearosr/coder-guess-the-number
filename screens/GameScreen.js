@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Button, Text, Dimensions, StyleSheet } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Button, Text, Dimensions, StyleSheet, Alert } from 'react-native';
 import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
 import Colors from '../constants/colors';
@@ -16,10 +16,40 @@ const generateRandomBetween = (min, max, exclude) => {
   }
 }
 
-const GameScreen = ({ onEndGame, userOption }) => {
+const GameScreen = ({ onEndGame, onGameOver, userOption }) => {
   const [currentGuess, setCurrentGuess] = useState(generateRandomBetween(1, 100, userOption));
+  const [rounds, setRounds] = useState(0);
+  const currentLow = useRef(1);
+  const currentHigh = useRef(100);
+
   const handleEndGame = () => {
     onEndGame(0)
+  }
+
+  useEffect(() => {
+    if (currentGuess === userOption) onGameOver(rounds);
+  }, [currentGuess, userOption, onGameOver]);
+
+  const handleNextGuess = (direction) => () => {
+    if (
+      (direction === 'lower' && currentGuess < userOption) ||
+      (direction === 'greater' && currentGuess > userOption)
+    ) {
+      Alert.alert('No mientas!', 'Tu sabes que no es verdad...!', [{
+        text: 'Disculpa!',
+        style: 'cancel',
+      }]);
+    }
+
+    if (direction === 'lower') {
+      currentHigh.current = currentGuess;
+    } else {
+      currentLow.current = currentGuess;
+    }
+
+    const nextNumber = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess);
+    setCurrentGuess(nextNumber);
+    setRounds(round => round + 1);
   }
 
   return (
@@ -27,8 +57,8 @@ const GameScreen = ({ onEndGame, userOption }) => {
       <Text>La suposición del oponente</Text>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card style={styles.buttonContainer}>
-        <Button title="MAYOR" onPress={() => { }} />
-        <Button title="MENOR" onPress={() => { }} />
+        <Button title="MENOR" onPress={handleNextGuess('lower')} />
+        <Button title="MAYOR" onPress={handleNextGuess('greater')} />
       </Card>
       <Button title="TERMINAR" onPress={handleEndGame} color={Colors.accent} />
     </View>
