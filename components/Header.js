@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Platform, StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 import Colors from '../constants/colors';
 
 const Header = ({ title }) => {
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
   header: {
     width: '100%',
     height: 90,
-    paddingTop: 36,
+    paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight,
     backgroundColor: Colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
