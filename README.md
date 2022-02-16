@@ -11,10 +11,6 @@ Juego sencillo basado en el azar, donde la aplicación intentará adivinar el n�
 
 Las ramas del proyecto están organizadas según la clase y el tema.
 
-**clase6/initialization** - Correspondiente al primer desarrollo de la clase 6, con header y stub del componente startgame
-
-**clase6/styles-constants** - Correspondiente al primer desarrollo de la clase 6, con estilos y constantes del componente startgame
-
 ## Wireframe
 
 ![Wireframe](./assets/wireframe.png)
